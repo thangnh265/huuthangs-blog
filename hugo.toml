@@ -1,0 +1,4 @@
+baseURL = 'https://thangnh265.github.io/'
+languageCode = 'en-us'
+title = "Huu Thang's Blog"
+theme = 'ananke'
