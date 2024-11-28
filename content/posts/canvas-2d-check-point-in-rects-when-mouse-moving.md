@@ -14,7 +14,7 @@ Cụ thể, khách hàng sẽ gửi một danh sách hình ảnh (ví dụ là �
 
 ### Ảnh 1 - Kết quả hiển thị cho khách hàng sau khi được hệ thống AI xử lý (_một phần giao diện thực tế_)
 
-![Kết quả hiển thị cho khách hàng sau khi được hệ thống AI xử lý hình ảnh](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/image-canvas-2d-result-rendering.png "Kết quả hiển thị cho khách hàng sau khi được hệ thống AI xử lý hình ảnh")
+![Kết quả hiển thị cho khách hàng sau khi được hệ thống AI xử lý hình ảnh](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/image-canvas-2d-result-rendering.png "Kết quả hiển thị cho khách hàng sau khi được hệ thống AI xử lý hình ảnh")
 
 Kết quả trả về từ máy chủ gồm nhiều thông tin, trong đó cái ta cần quan tâm ở đây là một mảng mô tả các đoạn văn bản mà hệ thống AI nhận diện được, như vị trí văn bản trên ảnh và văn bản là gì.
 
@@ -157,7 +157,7 @@ Chi tiết các bước:
   >   `x = (clientX - canvasRect.x) / resizeRate.x;`  
   >   `y = (clientY - canvasRect.y) / resizeRate.y;`  
   > - Xem ảnh sau để rõ hơn:
-  > ![Chuyển đổi vị trí con trỏ chuột từ hệ tọa độ màn hình sang hệ tọa độ ảnh gốc](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/transfer-mouse-position-from-screen-to-origin-image.drawio.png "Chuyển đổi vị trí con trỏ chuột từ hệ tọa độ màn hình sang hệ tọa độ ảnh gốc")
+  > ![Chuyển đổi vị trí con trỏ chuột từ hệ tọa độ màn hình sang hệ tọa độ ảnh gốc](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/transfer-mouse-position-from-screen-to-origin-image.drawio.png "Chuyển đổi vị trí con trỏ chuột từ hệ tọa độ màn hình sang hệ tọa độ ảnh gốc")
 
 - B2. Duyệt các hình chữ nhật để kiểm tra va chạm. Sau khi ta đưa vị trí con trỏ về cùng hệ tọa độ với vị trí của các hình chữ nhật, ta có thể kiểm tra xem một điểm có thuộc một hình chữ nhật không theo cách sau:
 
@@ -201,13 +201,13 @@ Cách 2: Ta giảm số lượng hình chữ nhật phải duyệt trong mỗi l
 
 Sau đây ta sẽ đi theo cách thứ 2.
 
-![Con trỏ chuột và các hình chữ nhật trong ảnh](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image.drawio.png "Con trỏ chuột và các hình chữ nhật trong ảnh")
+![Con trỏ chuột và các hình chữ nhật trong ảnh](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image.drawio.png "Con trỏ chuột và các hình chữ nhật trong ảnh")
 
 Thật vậy, nhìn ảnh ta dễ thấy rằng ở mỗi sự kiện `onMouseMove` con trỏ chuột chỉ có khả năng va chạm với một nhóm nhỏ gồm m hình chữ nhật lân cận nó (được khoanh vùng bằng ô vuông nét đứt). Như vậy ta chỉ cần kiểm tra va chạm của con trỏ với m hình chữ nhật này (m ở đây là 6) so với tổng số n hình chữ nhật (n ở đây là 20).
 
 Điều này dẫn ta đến một ý tưởng, ta sẽ chia ảnh thành mạng lưới gồm u x v ô chữ nhật. Sau đó với mỗi ô trong mạng lưới, ta sẽ xếp các hình chữ nhật mà ô đó chứa một phần hoặc toàn bộ hình chữ nhật đó vào bên trong, ta gọi số hình chữ nhật này là m. Sau đó, ở mỗi sự kiện `onMouseMove`, đầu tiên ta sẽ kiểm tra xem con trỏ chuột đang ở trong ô nào, tiếp theo ta chỉ cần duyệt m hình chữ nhật trong ô đó để kiểm tra va chạm.
 
-![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô của ảnh](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-grid-system-image.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô của ảnh")
+![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô của ảnh](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-grid-system-image.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô của ảnh")
 
 Bây giờ ta sẽ xếp các hình chữ nhật vào từng ô, ta đánh số mỗi ô là một cặp (u,v):  
 
@@ -244,7 +244,7 @@ Tối ưu nhất ở đây có thể hiểu là:
 1.1. Số lượng hình chữ nhật (m) trong mỗi ô phải đủ nhỏ so với tổng số hình chữ nhật (n). Nếu không thì việc phân chia này không có ý nghĩa lắm.  
   Điều này khiến ta suy nghĩ rằng ta càng chia kích thước của các ô càng nhỏ càng tốt, vì khi đó m sẽ càng nhỏ. Nhưng liệu rằng điều đó có thực sự tốt?
 
-![Con trỏ chuột và các hình chữ nhật trong nhiều mạng lưới chia ô của ảnh](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-grid-systems.drawio.png "Con trỏ chuột và các hình chữ nhật trong nhiều mạng lưới chia ô của ảnh")
+![Con trỏ chuột và các hình chữ nhật trong nhiều mạng lưới chia ô của ảnh](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-grid-systems.drawio.png "Con trỏ chuột và các hình chữ nhật trong nhiều mạng lưới chia ô của ảnh")
 
 Quan sát ảnh 1 ta thấy khi không phân chia lưới ô, nghĩa là ta coi cả ảnh là một ô chứa toàn bộ hình chữ nhật, đây cũng là giới hạn trên của việc phân chia.
 
@@ -258,7 +258,7 @@ Kết luận, có một giới hạn dưới cho việc phân chia lưới các 
 
 1.2. Tổng số ô trong lưới không quá lớn cũng như các hình chữ nhật không bị trùng lặp giữa các ô. Điều này để chuẩn bị cho việc thứ 2 trong số 3 việc ta phải làm, tức là ta sẽ tốn ít bộ nhớ để lưu trữ các ô và danh sách các hình chữ nhật trong ô.
 
-![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-grid-system-optimize.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh")
+![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-grid-system-optimize.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh")
 
 Giả sử một ảnh tối ưu đơn giản, ta chia thành 10x3=30 ô, trung bình có 55:30=1.8 hình chữ nhật trong một ô, tỷ lệ vào khoảng 1.8:20=9% so với tổng số 20 hình chữ nhật. Có một sự cân bằng giữa ảnh 5 so với ảnh 2 và ảnh 3.
 
@@ -268,7 +268,7 @@ Bạn đọc vẫn theo kịp chứ? Dựa vào nhận xét bên trên, suy ra �
 
 Ví dụ ở ảnh sau:
 
-![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với background](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-grid-system-with-background.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với background")
+![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với background](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-grid-system-with-background.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với background")
 
 Để minh họa với ảnh trên, ước lượng một cách đơn giản ta có:
 
@@ -316,7 +316,7 @@ for (let lowX = 0; lowX <= 1; lowX++) {
 }
 ```
 
-![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với hình chữ nhật 15 kích thước lớn](/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-rect-15-bigsize.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với hình chữ nhật 15 kích thước lớn")
+![Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với hình chữ nhật 15 kích thước lớn](/huuthangs-blog/images/posts/canvas-2d-check-point-in-rects-when-mouse-moving/mouse-and-rects-in-image-rect-15-bigsize.drawio.png "Con trỏ chuột và các hình chữ nhật trong mạng lưới chia ô tối ưu của ảnh với hình chữ nhật 15 kích thước lớn")
 
 Ảnh trên với hình chữ nhật 15 vẽ to bao trùm nhiều ô trong lưới, ta sẽ hiểu vì sao ta phải tính các ô chứa 4 góc rồi duyệt từng ô để cập nhật lại danh sách hình chữ nhật trong từng ô đó.
 
