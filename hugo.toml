@@ -1,4 +1,4 @@
-baseURL = 'https://thangnh265.github.io/'
+baseURL = 'https://thangnh265.github.io/huuthangs-blog/'
 languageCode = 'en-us'
 title = "Huu Thang's Blog"
 theme = 'ananke'
